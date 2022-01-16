@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block menu %}
+{% endblock %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="upper-margin"></div>
+        <div class="message-draft-discard">
+            <div class="indent-10"></div>
+            <div class="indent-20">
+                <h4>Внимание!</h4>
+            </div>
+            <div class="indent-20">
+                <h5>Вы действительно хотите отправить статью в черновики?</h5>
+            </div>
+            <div class="indent-auto">
+                <form method="post">
+                    {% csrf_token %}
+                    {% if article.author != user and user.is_staff and article.is_published %}
+                        <div class="indent-20">
+                            <h5>Причина снятия статьи с публикации:</h5>
+                        </div>
+
+                        <div class="block-draft-discard-text">
+                            <div class="input-textarea">
+                                <textarea name="reason_article_reject" id="reason_article_reject_id" cols="100" rows="5"
+                                          maxlength="500" class="article-complaint-input"></textarea>
+                            </div>
+                        </div>
+                        <div class="indent-10"></div>
+                    {% endif %}
+                    <div class="indent-50">
+                        <a>
+                            <button class="button12" type="submit">Да, В черновики</button>
+                        </a>
+
+                        <button class="button13" type="button" onclick="window.history.back()">Нет, отмена</button>
+                    </div>
+                    <div class="indent-10"></div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

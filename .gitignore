@@ -1,0 +1,11 @@
+*.pyc
+__pycache__
+/media/*
+db.sqlite3
+.DS_Store
+.idea
+settings_*
+gunicorn.*
+/venv/*
+/polls/*
+.vscode
